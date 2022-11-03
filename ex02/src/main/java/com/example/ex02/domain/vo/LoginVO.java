@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class UserVO {
+public class LoginVO {
 
     private String id;
     private String pw;
