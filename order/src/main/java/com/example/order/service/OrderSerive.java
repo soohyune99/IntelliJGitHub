@@ -48,13 +48,12 @@ public class OrderSerive {
         orderDAO.deleteById(orderId);
     }
 //    조회
-    public List<OrderVO> show(Long itemNumber){
+    public List<OrderDTO> show(Long itemNumber){
         return orderDAO.findByItemNumber(itemNumber);
     }
 
 //    전체 조회
-    public List<OrderDTO> showAll(){return null;}
-
+    public List<OrderDTO> showAll(){return orderDAO.findAll();}
 }
 
 

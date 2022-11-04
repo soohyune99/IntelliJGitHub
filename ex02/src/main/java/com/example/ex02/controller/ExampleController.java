@@ -1,15 +1,16 @@
 package com.example.ex02.controller;
 
+import com.example.ex02.domain.vo.LoginVO;
 import com.example.ex02.domain.vo.MemberVO;
 import com.example.ex02.domain.vo.ProductVO;
 import com.example.ex02.domain.vo.TaskVO;
-import com.example.ex02.domain.vo.LoginVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -52,6 +53,20 @@ public class ExampleController {
         log.info("ex07..............");
         log.info("memberVO: " + memberVO);
         log.info("gender: " + gender);
+    }
+
+    @GetMapping("ex08")
+//    name이 중복되면 배열또는 리스트로 작성 -> String[] or List<String>
+    public void ex08(@RequestParam("data") String[] datas){     // 화면에서 data로 넘어오는 것들을 datas에 담자.
+        log.info(datas.toString());
+    }
+
+    // 전체를 다 오케 들고오지?  -> members[0].name = 홍수현 & members[0].age = 20
+    // 이렇게 담아서 들고오자.
+    // vo객체는 list로 받을수 없다. 무조건 MemberVO안에 List만들어줘야한다
+    @GetMapping("ex09")
+    public void ex09(List<MemberVO> members){
+
     }
 
 //    [실습 1]
