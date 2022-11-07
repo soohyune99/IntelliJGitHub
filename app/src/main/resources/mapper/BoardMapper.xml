@@ -3,7 +3,20 @@
 <mapper namespace="com.example.app.mapper.BoardMapper">
     <select id="getList" resultType="boardVO">
         SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
-        FROM TBL_BOARD
+        FROM
+        (
+            SELECT ROWNUM R, BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
+            FROM
+            (
+                SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
+                FROM TBL_BOARD
+                ORDER BY BOARD_NUMBER DESC
+            )
+        <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
     </select>
 
     <insert id="insert">
@@ -28,5 +41,9 @@
     <select id="select" resultType="boardVO">
         SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
         FROM TBL_BOARD WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+
+    <select id="selectCountOfBoard" resultType="_int">
+        SELECT COUNT(BOARD_NUMBER) FROM TBL_BOARD
     </select>
 </mapper>
