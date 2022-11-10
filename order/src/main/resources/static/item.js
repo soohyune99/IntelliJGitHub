@@ -3,7 +3,8 @@
 * */
 const $checkboxes = $("input[type='checkbox']");
 const $table = $("#cart");
-let check = 0;
+const $pay = $("input#pay");
+const names = ["itemNumber", "itemName", "itemCount"]
 
 $checkboxes.on("click", function(){
     let index = $checkboxes.index($(this));
@@ -11,14 +12,42 @@ $checkboxes.on("click", function(){
     let text = "";
     if($(this).is(":checked")){
         text += `<tr id="` + index + `">`;
-        text += `<td><input name="orders[` + check + `].itemNumber" value="` + $tds.eq(1).text() + `" readonly></td>`;
-        text += `<td><input name="orders[` + check + `].itemName" value="` + $tds.eq(2).text() + `" readonly></td>`;
-        text += `<td><input name="orders[` + check + `].itemCount"></td>`;
+        text += `<td><input value="` + $tds.eq(1).text() + `" readonly></td>`;
+        text += `<td><input value="` + $tds.eq(2).text() + `" readonly></td>`;
+        text += `<td><input placeholder="개수"></td>`;
         text += `</tr>`;
         $table.append(text);
-        check ++;
     }else{
         $table.find("tr").remove("#" + index);
-        check --;
     }
 });
+
+$pay.on("click", function(){
+    $table.find("tr input").each(function(i, input){
+        $(input).attr("name", "orders[" + parseInt(i / 3) + "]." + names[i % 3]);
+    });
+
+    document.payForm.submit();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

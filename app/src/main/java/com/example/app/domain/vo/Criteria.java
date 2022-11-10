@@ -9,6 +9,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class Criteria {
     private int page;
     private int amount;
+    private String type;
+    private String keyword;
 
     public void createCriteria(){
         createCriteria(1, 10);
@@ -24,6 +26,10 @@ public class Criteria {
                 .queryParam("page", this.page)
                 .queryParam("amount", this.amount);
         return builder.toUriString();
+    }
+
+    public String[] getTypes(){
+        return type != null ? type.split("") : new String[] {};
     }
 }
 

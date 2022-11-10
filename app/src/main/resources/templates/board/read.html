@@ -7,6 +7,12 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <style>
+        .uploadResult ul {
+            display: flex;
+            list-style: none;
+        }
+    </style>
 </head>
 <body class="is-preload">
 <!-- Main -->
@@ -40,6 +46,22 @@
                             <div class="field">
                                 <h4>작성자</h4>
                                 <input type="text" th:field="*{boardWriter}" readonly/>
+                            </div>
+                            <div class="field">
+                                <h4>첨부파일</h4>
+                                <div class="uploadResult">
+                                    <ul>
+                                        <th:block th:each="file:*{files}">
+                                            <li>
+                                                <a th:href="@{/file/download(fileName=${file.fileUploadPath + '/' + file.fileUuid + '_' + file.fileName})}">
+                                                    <img th:if="${file.fileImageCheck}" th:src="@{/file/display(fileName=${file.fileUploadPath} + '/s_' + ${file.fileUuid} + '_' + ${file.fileName})}">
+                                                    <img th:unless="${file.fileImageCheck}" th:src="@{/images/attach.png}" width="100">
+                                                </a>
+                                                <p th:text="${file.fileName + '(' + file.fileSize / 1024 + 'KB)'}"></p>
+                                            </li>
+                                        </th:block>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <ul class="actions special">

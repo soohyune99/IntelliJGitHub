@@ -22,8 +22,8 @@ public class OrderDAO {
         orderMapper.delete(orderId);
     }
     //    조회
-    public List<OrderDTO> findByItemNumber(Long itemNumber){
-        return orderMapper.select(itemNumber);
+    public List<OrderDTO> findByItemNumber(String itemName){
+        return orderMapper.select(itemName);
     }
     public List<OrderDTO> findByOrderId(String orderId){return orderMapper.selectOrder(orderId);}
     //    전체 조회

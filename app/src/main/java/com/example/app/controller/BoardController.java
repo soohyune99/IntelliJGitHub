@@ -29,7 +29,7 @@ public class BoardController {
         if(criteria.getPage() == 0){
             criteria.createCriteria();
         }
-        pageDTO.createPageDTO(criteria, boardService.getTotal());
+        pageDTO.createPageDTO(criteria, boardService.getTotal(criteria));
         model.addAttribute("boards", boardService.show(criteria));
         model.addAttribute("pagination", pageDTO);
     }
