@@ -70,6 +70,28 @@
                                 <input type="submit" class="button" value="삭제"/>
                             </li>
                         </ul>
+                        <ul class="icons">
+                            <li style="display: block">
+                                <span class="icon solid fa-envelope"></span>
+                                <strong>댓글</strong>
+                            </li>
+                        </ul>
+                        <a href="javascript:void(0)" class="register button primary small" style="width: 100%">댓글 등록</a>
+                        <div style="display: none" class="register-form">
+                            <div>
+                                <h4>작성자</h4>
+                                <input type="text" name="replyWriter" placeholder="Replier">
+                            </div>
+                            <div>
+                                <h4>댓글</h4>
+                                <textarea rows="6" name="replyContent" placeholder="Reply" style="resize: none"></textarea>
+                            </div>
+                            <div style="text-align: right">
+                                <a href="javascript:void(0)" class="finish button primary small">등록</a>
+                                <a href="javascript:void(0)" class="cancel button primary small">취소</a>
+                            </div>
+                        </div>
+                        <ul class="replies"></ul>
                     </form>
                 </div>
             </div>
@@ -83,7 +105,64 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/reply.js"></script>
 <script th:inline="javascript">
+
+    let boardNumber = [[${board.boardNumber}]];
+    /*#################################################################################################*/
+    /*#######################################    REPLY     #############################################*/
+    /*#################################################################################################*/
+
+
+
+
+
+    /*#################################################################################################*/
+    /*#######################################    TEST     #############################################*/
+    /*#################################################################################################*/
+
+    // replyService.add({
+    //     replyContent: 'module test',
+    //     replyWriter: 'tester',
+    //     boardNumber: boardNumber
+    // }, add)
+    //
+    // function add(result){
+    //     alert(result);
+    // }
+
+    // replyService.getList(boardNumber, getList);
+    //
+    // function getList(replies){
+    //     console.log(replies);
+    // }
+
+    // replyService.read(23, read);
+    //
+    // function read(reply){
+    //     console.log(reply);
+    // }
+
+    // replyService.remove(23, remove);
+    //
+    // function remove(text){
+    //     alert(text);
+    // }
+
+    // replyService.modify({
+    //     replyNumber: 62,
+    //     replyWriter: 'ajax 싫어',
+    //     replyContent: 'ajax 좋아'
+    // }, modify);
+    //
+    // function modify(text){
+    //     alert(text);
+    // }
+
+    /*#################################################################################################*/
+    /*#######################################    Paging     #############################################*/
+    /*#################################################################################################*/
+
     let queryString = [[${criteria.queryString}]];
 
     function goUpdate(){

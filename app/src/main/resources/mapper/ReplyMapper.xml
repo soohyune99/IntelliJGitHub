@@ -14,7 +14,7 @@
 
     <update id="update">
         UPDATE TBL_REPLY
-        SET REPLY_CONTENT = #{replyContent}, REPLY_UPDATE_DATE = CURRENT_DATE
+        SET REPLY_CONTENT = #{replyContent}, REPLY_WRITER = #{replyWriter}, REPLY_UPDATE_DATE = CURRENT_DATE
         WHERE REPLY_NUMBER = #{replyNumber}
     </update>
 
@@ -27,4 +27,24 @@
         SELECT COUNT(REPLY_NUMBER) FROM TBL_REPLY
         WHERE BOARD_NUMBER = #{boardNumber}
     </select>
+
+    <select id="select" resultType="replyVO">
+        SELECT REPLY_NUMBER, REPLY_CONTENT, REPLY_WRITER, REPLY_REGISTER_DATE, REPLY_UPDATE_DATE, BOARD_NUMBER
+        FROM TBL_REPLY
+        WHERE REPLY_NUMBER = #{replyNumber}
+    </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

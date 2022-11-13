@@ -17,4 +17,6 @@ public interface ReplyMapper {
     public void delete(Long replyNumber);
 //    전체 개수
     public int selectCountOfReply(Long boardNumber);
+//    조회
+    public ReplyVO select(Long replyNumber);
 }

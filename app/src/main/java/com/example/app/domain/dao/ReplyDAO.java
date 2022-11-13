@@ -32,6 +32,10 @@ public class ReplyDAO {
     public int findCountByBoardNumber(Long boardNumber){
         return replyMapper.selectCountOfReply(boardNumber);
     }
+    //    조회
+    public ReplyVO findById(Long replyNumber){
+        return replyMapper.select(replyNumber);
+    }
 }
 
 

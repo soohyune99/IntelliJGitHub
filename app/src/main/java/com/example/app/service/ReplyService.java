@@ -32,4 +32,8 @@ public class ReplyService {
     public int getTotal(Long boardNumber){
         return replyDAO.findCountByBoardNumber(boardNumber);
     }
+    //    조회
+    public ReplyVO show(Long replyNumber){
+        return replyDAO.findById(replyNumber);
+    }
 }
