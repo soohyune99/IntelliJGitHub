@@ -8,8 +8,21 @@
 
     <select id="selectAll" resultType="replyVO">
         SELECT REPLY_NUMBER, REPLY_CONTENT, REPLY_WRITER, REPLY_REGISTER_DATE, REPLY_UPDATE_DATE, BOARD_NUMBER
-        FROM TBL_REPLY
-        WHERE BOARD_NUMBER = #{boardNumber}
+        FROM
+        (
+            SELECT ROWNUM R, REPLY_NUMBER, REPLY_CONTENT, REPLY_WRITER, REPLY_REGISTER_DATE, REPLY_UPDATE_DATE, BOARD_NUMBER
+            FROM
+            (
+                SELECT REPLY_NUMBER, REPLY_CONTENT, REPLY_WRITER, REPLY_REGISTER_DATE, REPLY_UPDATE_DATE, BOARD_NUMBER
+                FROM TBL_REPLY
+                WHERE BOARD_NUMBER = #{boardNumber}
+                ORDER BY REPLY_NUMBER DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
     </select>
 
     <update id="update">

@@ -1,5 +1,6 @@
 package com.example.app.domain.dao;
 
+import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ReplyVO;
 import com.example.app.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class ReplyDAO {
         replyMapper.insert(replyVO);
     }
     //    목록
-    public List<ReplyVO> findAll(Long boardNumber){
-        return replyMapper.selectAll(boardNumber);
+    public List<ReplyVO> findAll(Long boardNumber, Criteria criteria){
+        return replyMapper.selectAll(boardNumber, criteria);
     }
     //    수정
     public void update(ReplyVO replyVO){
