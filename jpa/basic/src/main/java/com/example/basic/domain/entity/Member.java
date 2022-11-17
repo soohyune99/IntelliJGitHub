@@ -25,6 +25,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(name = "MEMBER_TYPE")
     private MemberType memberType;
+
+    public void create(String memberName, String memberEmail, String memberPassword, int memberAge, MemberType memberType) {
+        this.memberName = memberName;
+        this.memberEmail = memberEmail;
+        this.memberPassword = memberPassword;
+        this.memberAge = memberAge;
+        this.memberType = memberType;
+    }
 }
 
 
